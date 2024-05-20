@@ -45,7 +45,16 @@ public class Main {
                             System.out.println("Invalid date format. Please try again.");
                         }
                     }
-                    taskManager.addTask(title, description, dueDate);
+
+                    System.out.println("Enter task priority level: ");
+                    System.out.println("1. Important");
+                    System.out.println("2. Normal");
+                    System.out.println("3. Less Important");
+                    int priorityLevel = scanner.nextInt();
+                    scanner.nextLine();
+
+
+                    taskManager.addTask(title, description, dueDate, priorityLevel);
                     System.out.println("Task added successfully");
                     break;
                 case 2:
@@ -76,7 +85,14 @@ public class Main {
                         }
                     }
 
-                    taskManager.editTask(editIndex - 1, newTitle, newDescription, newDueDate);
+                    System.out.println("Enter task priority level: ");
+                    System.out.println("1. Important");
+                    System.out.println("2. Normal");
+                    System.out.println("3. Less Important");
+                    int newPriorityLevel = scanner.nextInt();
+                    scanner.nextLine();
+
+                    taskManager.editTask(editIndex - 1, newTitle, newDescription, newDueDate, newPriorityLevel);
                     System.out.println("Task edited successfully.");
                     break;
                 case 3:

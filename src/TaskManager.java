@@ -9,17 +9,18 @@ public class TaskManager {
     public TaskManager() { tasks = new ArrayList<>();}
 
     // Add a task
-    public void addTask(String title, String description, LocalDate dueDate) {
-        Task task = new Task(title, description, dueDate);
+    public void addTask(String title, String description, LocalDate dueDate, int priorityLevel) {
+        Task task = new Task(title, description, dueDate, priorityLevel);
         tasks.add(task);
     }
 
     // Edit a task
-    public void editTask(int index, String title, String description, LocalDate dueDate) {
+    public void editTask(int index, String title, String description, LocalDate dueDate, int priorityLevel) {
         Task task = tasks.get(index);
         task.setTitle(title);
         task.setDescription(description);
         task.setDueDate(dueDate);
+        task.setPriorityLevel(priorityLevel);
     }
 
     public List<Task> getTasks() {return  tasks;}

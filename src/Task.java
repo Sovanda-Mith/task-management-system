@@ -5,13 +5,15 @@ public class Task {
     private  String description;
     private LocalDate dueDate;
     private boolean completed;
+    private int priorityLevel;
 
     // Constructor
-    public Task(String title, String description, LocalDate dueDate) {
+    public Task(String title, String description, LocalDate dueDate, int priorityLevel) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = false; // By default, tasks are not completed
+        this.priorityLevel = priorityLevel;
     }
 
     // Getters and setters
@@ -31,10 +33,16 @@ public class Task {
 
     public  void setCompleted(boolean completed) {this.completed = completed;}
 
+    public int getPriorityLevel() {return priorityLevel;}
+
+    public void setPriorityLevel(int priorityLevel) {this.priorityLevel = priorityLevel;}
+
+
     // toString method to display task information
     @Override
     public String toString() {
         return title = " (" + (completed ? "completed" : "not completed") + ")" +
+                "\nPriority Level: " + priorityLevel +
                 "\nDescription: " + description +
                 "\nDue date: " + dueDate;
     }
