@@ -1,12 +1,12 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 public class TaskManager {
-    private List<Task> tasks;
+    private PriorityQueue<Task> tasks;
 
     // Constructor
-    public TaskManager() { tasks = new ArrayList<>();}
+    public TaskManager() { tasks = new PriorityQueue<>();}
 
     // Add a task
     public void addTask(String title, String description, LocalDate dueDate, int priorityLevel) {
@@ -15,37 +15,74 @@ public class TaskManager {
     }
 
     // Edit a task
-    public void editTask(int index, String title, String description, LocalDate dueDate, int priorityLevel) {
-        Task task = tasks.get(index);
-        task.setTitle(title);
-        task.setDescription(description);
-        task.setDueDate(dueDate);
-        task.setPriorityLevel(priorityLevel);
+    public void editTask(String title, String newTitle, String description, LocalDate dueDate, int priorityLevel) {
+        Task taskToEdit = null;
+        Iterator<Task> it = tasks.iterator();
+
+        while (it.hasNext()) {
+            Task task = it.next();
+            if (task.getTitle().equals(title)) {
+                taskToEdit = task;
+                break;
+            }
+        }
+
+        if (taskToEdit != null) {
+            taskToEdit.setTitle(newTitle);
+            taskToEdit.setDescription(description);
+            taskToEdit.setDueDate(dueDate);
+            taskToEdit.setPriorityLevel(priorityLevel);
+        } else {
+            System.out.println("Task not found.");
+        }
     }
 
-    public List<Task> getTasks() {return  tasks;}
+    public PriorityQueue<Task> getTasks() {
+        return tasks;
+    }
 
     // View all tasks
     public void viewTasks() {
+        Iterator<Task> it = tasks.iterator();
         if (tasks.isEmpty()) {
             System.out.println("No tasks found.");
             return;
         }
 
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("Task #" + (i + 1));
-            System.out.println(tasks.get(i));
-            System.out.println(); // empty line for formatting
+        while (it.hasNext()) {
+            Task task = it.next();
+            System.out.println(task);
+            System.out.println();
         }
+
     }
 
     // Delete a task
-    public void deleteTask(int index) {tasks.remove(index);}
+    public void deleteTask(String title) {
+        Iterator<Task> it = tasks.iterator();
+
+        while (it.hasNext()) {
+            Task task = it.next();
+            if (task.getTitle().equals(title)) {
+                it.remove();
+                break;
+            }
+        }
+    }
 
     // Mark a task as completed
-    public void markTaskAsCompleted(int index) {
-        Task task = tasks.get(index);
-        task.setCompleted(true);
+    public void markTaskAsCompleted(String title) {
+
+        Iterator<Task> it = tasks.iterator();
+
+        while (it.hasNext()) {
+            Task task = it.next();
+            if (task.getTitle().equals(title)) {
+                task.setCompleted(true);
+                break;
+            }
+        }
+
     }
 
 }

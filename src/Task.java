@@ -1,6 +1,5 @@
 import java.time.LocalDate;
-
-public class Task {
+public class Task implements Comparable<Task> {
     private  String title;
     private  String description;
     private LocalDate dueDate;
@@ -41,10 +40,16 @@ public class Task {
     // toString method to display task information
     @Override
     public String toString() {
-        return title = " (" + (completed ? "completed" : "not completed") + ")" +
+        String result = " (" + (completed ? "completed" : "not completed") + ")" +
+                "\nTitle: " + title +
                 "\nPriority Level: " + priorityLevel +
                 "\nDescription: " + description +
                 "\nDue date: " + dueDate;
+        return result;
+    }
+    @Override
+    public int compareTo(Task t) {
+        return Integer.compare(this.priorityLevel, t.priorityLevel);
     }
 
 }

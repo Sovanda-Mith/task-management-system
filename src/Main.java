@@ -59,15 +59,10 @@ public class Main {
                     break;
                 case 2:
                     // Edit a task
-                    System.out.print("Enter the task number to edit: ");
-                    int editIndex = scanner.nextInt();
-                    scanner.nextLine();
+                    System.out.print("Enter the task title to edit: ");
+                    String titleToEdit = scanner.nextLine();
 
-                    if (editIndex <= 0 || editIndex > taskManager.getTasks().size()) {
-                        System.out.println("Invalid task number. Please try again.");
-                        break;
-                    }
-                    System.out.print("Enter the task title: ");
+                    System.out.print("Enter new task title: ");
                     String newTitle = scanner.nextLine();
 
                     System.out.print("Enter the task description: ");
@@ -92,7 +87,7 @@ public class Main {
                     int newPriorityLevel = scanner.nextInt();
                     scanner.nextLine();
 
-                    taskManager.editTask(editIndex - 1, newTitle, newDescription, newDueDate, newPriorityLevel);
+                    taskManager.editTask(titleToEdit, newTitle, newDescription, newDueDate, newPriorityLevel);
                     System.out.println("Task edited successfully.");
                     break;
                 case 3:
@@ -101,29 +96,18 @@ public class Main {
                     break;
                 case 4:
                     // Delete a task
-                    System.out.println("Enter the task number to delete: ");
-                    int deleteIndex = scanner.nextInt();
-                    scanner.nextLine();
+                    System.out.println("Enter the task title to delete: ");
+                    String titleToDelete = scanner.nextLine();
 
-                    if (deleteIndex <= 0 || deleteIndex > taskManager.getTasks().size()) {
-                        System.out.println("Invalid task number. Please try again.");
-                        break;
-                    }
-
-                    taskManager.deleteTask(deleteIndex - 1);
+                    taskManager.deleteTask(titleToDelete);
                     System.out.println("Task deleted successfully.");
                     break;
                 case 5:
                     // Mark a task as completed
-                    System.out.println("Enter the task number to mark as completed: ");
-                    int completedIndex = scanner.nextInt();
-                    scanner.nextLine();
+                    System.out.println("Enter the task title to mark as completed: ");
+                    String titleToComplete = scanner.nextLine();
 
-                    if (completedIndex <= 0 || completedIndex > taskManager.getTasks().size()) {
-                        System.out.println("Invalid task number. Please try again.");
-                        break;
-                    }
-                    taskManager.markTaskAsCompleted(completedIndex - 1);
+                    taskManager.markTaskAsCompleted(titleToComplete);
                     System.out.println("Task marked as completed successfully.");
                     break;
                 default:
@@ -132,6 +116,8 @@ public class Main {
             }
             System.out.println();
         }
+
+
 
     }
 }
